@@ -109,8 +109,14 @@ export const useGameStore = create<Store>((set, get) => ({
 
   tapFoundation: (si) => {
     const s = get();
-    const { selected, foundation } = s;
+    const { selected, tableau } = s;
     if (!selected) return;
+
+    // Only the top card of a column can move to foundation
+    if (selected.area === 'tableau') {
+      const col = tableau[selected.colIdx];
+      if (selected.cardIdx !== col.length - 1) return;
+    }
 
     const prev = boardSnapshot(s);
     let next: BoardState | null = null;
@@ -159,6 +165,9 @@ export function tryAutoMove(area: SelectionArea, colIdx: number) {
   if (area === 'waste') {
     next = moveWasteToFoundation(s);
   } else {
+    // Only the top card auto-moves to foundation
+    const col = s.tableau[colIdx];
+    if (col.length === 0) return;
     next = moveTableauToFoundation(s, colIdx);
   }
 
