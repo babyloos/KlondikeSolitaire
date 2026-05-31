@@ -78,8 +78,8 @@ export const useGameStore = create<Store>((set, get) => ({
       return;
     }
 
-    // Tap same card → deselect
-    if (selected.area === 'tableau' && selected.colIdx === colIdx && selected.cardIdx === cardIdx) {
+    // Tap anywhere in the already-selected column → deselect
+    if (selected.area === 'tableau' && selected.colIdx === colIdx) {
       set({ selected: null });
       return;
     }
