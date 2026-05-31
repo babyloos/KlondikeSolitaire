@@ -1,17 +1,23 @@
 {
   "expo": {
-    "name": "KlondikeSolitaire",
+    "name": "Klondike Solitaire",
     "slug": "KlondikeSolitaire",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "backgroundColor": "#1a4a2e"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.babyloos.klondikesolitaire"
     },
     "android": {
+      "package": "com.babyloos.klondikesolitaire",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#1a4a2e",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -20,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "owner": "babyloos",
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
     }
   }
 }

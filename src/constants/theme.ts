@@ -1,0 +1,12 @@
+export const BG = '#1a4a2e';           // felt green
+export const SURFACE = '#143d25';
+export const CARD_BG = '#ffffff';
+export const CARD_BACK = '#1a3a7a';
+export const CARD_BORDER = '#cccccc';
+export const CARD_SELECTED = '#ffd700';
+export const EMPTY_SLOT = 'rgba(255,255,255,0.12)';
+export const TEXT = '#ffffff';
+export const TEXT_DIM = '#88aa88';
+export const ACCENT = '#ffd700';
+export const RED = '#cc1122';
+export const BLACK = '#111111';
