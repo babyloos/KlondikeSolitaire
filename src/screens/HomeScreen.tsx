@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useGameStore } from '../store/gameStore';
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import { BANNER_AD_UNIT_ID } from '../utils/ads';
+import { useEffect } from 'react';
 import { initSounds } from '../utils/sounds';
 import { BG, ACCENT, TEXT, TEXT_DIM } from '../constants/theme';
 import { t } from '../i18n';
@@ -12,6 +13,7 @@ import { SUIT_SYMBOL } from '../game/cards';
 type Props = { navigation: NativeStackNavigationProp<any> };
 
 export function HomeScreen({ navigation }: Props) {
+  useEffect(() => { initSounds(); }, []);
   const { start, bestSec } = useGameStore();
 
   function handlePlay() {
