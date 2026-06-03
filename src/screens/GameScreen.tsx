@@ -4,6 +4,8 @@ import {
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useGameStore, tryAutoMove } from '../store/gameStore';
+import { playSound } from '../utils/sounds';
+import { loadInterstitial, showInterstitialIfReady } from '../utils/ads';
 import { TableauColumn } from '../components/TableauColumn';
 import { PlayingCard } from '../components/PlayingCard';
 import { SUITS, SUIT_SYMBOL } from '../game/cards';
@@ -19,6 +21,20 @@ export function GameScreen({ navigation }: Props) {
     tableau, foundation, stock, waste, selected, moves, isWon,
     elapsedSec, start, tap, tapFoundation, tapStock, undo, tick,
   } = useGameStore();
+
+  const levelsSinceAd = useRef(0);
+  const prevWon = useRef(false);
+
+  useEffect(() => { loadInterstitial(); }, []);
+  useEffect(() => {
+    if (isWon && !prevWon.current) {
+      playSound('win');
+      levelsSinceAd.current += 1;
+      if (levelsSinceAd.current >= 3) { levelsSinceAd.current = 0; showInterstitialIfReady(); }
+    }
+    prevWon.current = isWon;
+  }, [isWon]);
+
 
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
